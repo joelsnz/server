@@ -10,5 +10,11 @@ services:
       - WEBPASSWORD=${WEBPASSWORD}
     volumes:
       - "./etc/pihole:/etc/pihole"
-      - "./etc/dnsmasq.d:/etc/dsmasq.d"
+      - "./etc/dnsmasq.d:/etc/dnsmasq.d"
+    networks:
+      - pihole
     restart: unless-stopped
+
+networks:
+  pihole:
+    name: pihole
