@@ -1,0 +1,5 @@
+# ignore temp services
+services
+
+# ignore environment files
+.env
