@@ -3,18 +3,30 @@ services:
     container_name: pihole
     image: pihole/pihole:2024.07.0
     ports:
+      # port 53 are exposed host level so queries don't get NAT
       - "53:53/tcp"
       - "53:53/udp"
-      - "5353:80/tcp"
+      # - "5353:80/tcp"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.xuelosnz.com`)"
+      - "traefik.http.routers.pihole.middlewares=pihole-admin"
+      - "traefik.http.routers.pihole.entrypoints=https"
+      - "traefik.http.routers.pihole.tls=true"
+      # port 80 (Web GUI) goes through traefik so it is reverse proxied
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"
+      # so pihole.xuelosnz.com resolves as pihole.xuelosnz.com/admin
+      - "traefik.http.middlewares.pihole-admin.addprefix.prefix=/admin"
     environment:
       - WEBPASSWORD=${WEBPASSWORD}
+      - DNSMASQ_USER=root
     volumes:
       - "./etc/pihole:/etc/pihole"
       - "./etc/dnsmasq.d:/etc/dnsmasq.d"
     networks:
-      - pihole
+      - proxy
     restart: unless-stopped
 
 networks:
-  pihole:
-    name: pihole
+  proxy:
+    external: true
