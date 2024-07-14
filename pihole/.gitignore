@@ -1,6 +1,0 @@
-# ignore everything but specified files
-*
-!compose.yaml
-!.gitignore
-!./etc/dnsmasq.d/05-pihole-custom-cname.conf # list of CNAME DNS
-!./etc/pihole/custom.list # list of local A DNS
