@@ -1,0 +1,4 @@
+/pihole/*
+!/pihole/custom.list
+/dnsmasq.d/*
+!/dnsmasq.d/05-pihole-custom-cname.conf

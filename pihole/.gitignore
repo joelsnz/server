@@ -1,4 +1,0 @@
-# ignore everything but .gitignore and compose.yaml
-*
-!compose.yaml
-!.gitignore
