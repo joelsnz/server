@@ -15,7 +15,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
-      - "traefik.routers.obsidian-livesync.rule=Host(`livesync.xuelosnz.com`)"
+      - "traefik.http.routers.obsidian-livesync.rule=Host(`livesync.xuelosnz.com`)"
       - "traefik.http.routers.obsidian-livesync.entrypoints=https"
       - "traefik.http.routers.obsidian-livesync.service=obsidian-livesync"
       - "traefik.http.services.obsidian-livesync.loadbalancer.server.port=5984"
