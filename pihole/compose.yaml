@@ -6,6 +6,8 @@ services:
       # port 53 are exposed host level so queries don't get NAT
       - "53:53/tcp"
       - "53:53/udp"
+      - "67:67/udp"
+      - "853:853/tcp"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pihole.rule=Host(`pihole.xuelosnz.com`)"
@@ -19,15 +21,11 @@ services:
     environment:
       - WEBPASSWORD=${WEBPASSWORD}
       - DNSMASQ_USER=root
-      - TZ=Europe/Madrid
     volumes:
       - "./etc/pihole:/etc/pihole"
       - "./etc/dnsmasq.d:/etc/dnsmasq.d"
     networks:
       - proxy
-    dns:
-      - 1.1.1.1
-      - 127.0.0.1
     restart: unless-stopped
 
 networks:
