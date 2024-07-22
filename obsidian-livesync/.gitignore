@@ -1,1 +1,4 @@
-data/
+*
+!.gitignore
+!compose.yaml
+!local.ini
