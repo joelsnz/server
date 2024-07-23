@@ -30,6 +30,15 @@ services:
       - "traefik.http.middlewares.obsidiancors.headers.addvaryheader=true"
       - "traefik.http.middlewares.obsidiancors.headers.accessControlAllowCredentials=true"
 
+  filesystem-livesync:
+    image: heywoodlh/filesystem-livesync:2022_04
+    container_name: obsidian-notes
+    restart: always
+    environment:
+      - CHOKIDAR_USEPOLLING=1
+    volumes:
+      - ./Vaults:/data
+
 networks:
   proxy:
     external: true

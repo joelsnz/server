@@ -1,0 +1,18 @@
+{
+    "Vault": {
+        "server": {
+            "uri": "https://livesync.xuelosnz.com",
+            "auth": {
+                "username": ${COUCHDB_USERNAME},
+                "password": ${COUCHDB_PASSWORD},
+		            "passphrase": ${OBSIDIAN_PASSPHRASE}
+            }
+        },
+        "local": {
+            "path": "/data/vault",
+            "initialScan": true
+        },
+        "auto_reconnect": true,
+	      "sync_on_connect": true
+    }
+}
